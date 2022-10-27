@@ -5,6 +5,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import client.*;
 import common.*;
@@ -161,6 +163,16 @@ public class ClientGUI extends JFrame implements ChatIF
         JPanel southPanel = new JPanel();
         southPanel.setBackground(red);
         textField.setColumns(30);
+        textField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String stringToSend = textField.getText();
+                if (stringToSend != null){
+                    client.handleMessageFromClientUI(stringToSend);
+                }
+                textField.setText("");
+            }
+        });
         JButton buttonSend = new JButton("Send");
         buttonSend.addActionListener(new ActionListener() {
             @Override

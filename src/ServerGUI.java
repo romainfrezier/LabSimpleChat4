@@ -109,6 +109,16 @@ public class ServerGUI extends JFrame implements ChatIF {
         JPanel southPanel = new JPanel();
         southPanel.setBackground(green);
         textField.setColumns(30);
+        textField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String stringToSend = textField.getText();
+                if (stringToSend != null){
+                    sv.handleMessageFromServerUI(stringToSend);
+                }
+                textField.setText("");
+            }
+        });
         JButton buttonSend = new JButton("Send");
         buttonSend.addActionListener(new ActionListener() {
             @Override
